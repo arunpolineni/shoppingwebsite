@@ -116,13 +116,13 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		VALUES (NULL, '$f_name', '$l_name', '$email', 
 		'$password', '$mobile', '$address1', '$address2')";
 		$run_query = mysqli_query($con,$sql);
-		$_SESSION["uid"] = mysqli_insert_id($con);
-		$_SESSION["name"] = $f_name;
-		$ip_add = getenv("REMOTE_ADDR");
-		$sql = "UPDATE cart SET user_id = '$_SESSION[uid]' WHERE ip_add='$ip_add' AND user_id = -1";
-		if(mysqli_query($con,$sql)){
+		// $_SESSION["uid"] = mysqli_insert_id($con);
+		// $_SESSION["name"] = $f_name;
+		// $ip_add = getenv("REMOTE_ADDR");
+		// $sql = "UPDATE cart SET user_id = '$_SESSION[uid]' WHERE ip_add='$ip_add' AND user_id = -1";
+		if($run_query){
 			echo "register_success";
-			echo "<script> location.href='store.php'; </script>";
+			echo "<script> location.href='signin_form.php'; </script>";
             exit;
 		}
 	}

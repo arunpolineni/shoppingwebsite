@@ -11,7 +11,7 @@ session_start();
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Online Shopping</title>
+		<title>Ak store</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet"/>
@@ -119,24 +119,25 @@ session_start();
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
+			<?php
+						
+						include "db.php";
+					 if(isset($_SESSION["uid"])){
+							 $sql = "SELECT first_name,mobile,email,address2 FROM user_info WHERE user_id='$_SESSION[uid]'";
+							 $query = mysqli_query($con,$sql);
+							 $row=mysqli_fetch_array($query);
+							 
+							 echo '
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +1-12344465767</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> puneethreddy951@gmail.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i>New York</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> '.$row["mobile"].'</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i>'.$row["email"].'</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i>'.$row["address2"].'</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-inr"></i> INR</a></li>
-						<li><?php
-						
-                             include "db.php";
-                            if(isset($_SESSION["uid"])){
-                                $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
-                                $query = mysqli_query($con,$sql);
-                                $row=mysqli_fetch_array($query);
-                                
-                                echo '
+						<li><a href="#"><i class="fa "></i> </a></li>
+						<li>
                                <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI '.$row["first_name"].'</a>
 								  <div class="dropdownn-content">
@@ -149,6 +150,16 @@ session_start();
 
                             }else{ 
                                 echo '
+																<div id="top-header">
+																<div class="container">
+																	<ul class="header-links pull-left">
+																		<li><a href="#"><i class="fa fa-phone"></i>mobile</a></li>
+																		<li><a href="#"><i class="fa fa-envelope-o"></i>mail</a></li>
+																		<li><a href="#"><i class="fa fa-map-marker"></i>city</a></li>
+																	</ul>
+																	<ul class="header-links pull-right">
+																		<li><a href="#"><i class="fa "></i> </a></li>
+																		<li>
                                 <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
 								  <div class="dropdownn-content">
@@ -182,7 +193,7 @@ session_start();
 							<div class="header-logo">
 								<a href="#" class="logo">
 								<font style="font-style:normal; font-size: 33px;color: aliceblue;font-family: serif">
-                                        Online Shop
+                                        Ak Store
                                     </font>
 									
 								</a>
@@ -197,7 +208,7 @@ session_start();
 									<select class="input-select">
 										<option value="0">All Categories</option>
 										<option value="1">Men</option>
-										<option value="1">Women </option>
+										<option value="2">Women </option>
 									</select>
 									<input class="input" id="search" type="text" placeholder="Search here">
 									<button id="search_btn"   class="search-btn">Search</button>

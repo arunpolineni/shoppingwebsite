@@ -563,7 +563,7 @@ if (isset($_POST["Common"])) {
 				if (!isset($_SESSION["uid"])) {
 					echo '
 					
-							<a href="signup_form.php" class="btn btn-success">Ready to Checkout</a></td>
+							<a href="signin_form.php" class="btn btn-success">Ready to Checkout</a></td>
 								</tr>
 							</tfoot>
 				
